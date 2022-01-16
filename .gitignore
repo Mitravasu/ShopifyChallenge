@@ -1,2 +1,2 @@
-
-backend/node_modules/.bin/mime
+# dependancies
+/backend/node_modules
