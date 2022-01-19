@@ -2,7 +2,8 @@ import './App.css';
 import React, {useState, useEffect } from 'react';
 import axios from 'axios';
 
-const serverUrl = process.env.REACT_APP_HOST + 'api';
+// const serverUrl = process.env.REACT_APP_HOST + 'api';
+const serverUrl = 'http://localhost:5000/api';
 
 function App() {
   const [items, setItem] = useState(0);

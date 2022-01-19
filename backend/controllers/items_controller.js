@@ -7,8 +7,7 @@ exports.getItems = (req, res) => {
     Item.find()
         .exec()
         .then((data) => {
-            res.sendFile(path.join(__dirname, "..", "views", "index.html") , data);
-            // res.status(200).json(data)
+            res.status(200).json(data)
         })
 }
 
