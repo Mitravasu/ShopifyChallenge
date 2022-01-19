@@ -65,14 +65,14 @@ exports.updateItems = (req, res) => {
 }
 
 exports.deleteItems = (req, res) => {
-    Item.findOne({name:req.body.name})
+    Item.findOne({_id:req.body._id})
         .exec()
         .then((data)=>{
             if(!data) {
                 // meaning no item found
                 res.status(404).json({message: "No such item exists!"})
             } else {
-                Item.deleteOne({name: req.body.name})
+                Item.deleteOne({_id: req.body._id})
                     .then(() => {
                         res.status(200).json({message: "Item deleted successfully!"})
                     })
