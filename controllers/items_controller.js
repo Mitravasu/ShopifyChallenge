@@ -1,18 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Item = require('../models/items_model');
+const path = require('path')
 
 exports.getItems = (req, res) => {
     Item.find()
         .exec()
         .then((data) => {
-            res.status(200).json(data)
+            res.sendFile(path.join(__dirname, "..", "views", "index.html") , data);
+            // res.status(200).json(data)
         })
 }
 
 exports.postUsers = (req, res) => {
     // console.log(req.body);
     // res.status(200);
+    console.log(req.body);
+
     const item = new Item({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -40,6 +44,24 @@ exports.postUsers = (req, res) => {
             } else {
                 res.status(500).json({message: "Item already exists!"})
             }
+        })
+}
+
+exports.updateItems = (req, res) => {
+    const id = req.body._id
+
+    Item.updateOne({_id: id}, {$set:req.body})
+        .exec()
+        .then((result) => {
+            console.log(result)
+            res.status(200).json({
+                success: true
+            })
+        })
+        .catch((err) => {
+            res.status(500).json({
+                error: err
+            })
         })
 }
 

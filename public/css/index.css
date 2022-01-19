@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: whitesmoke;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 20px;
+}
+
+div input {
+    padding: 10px;
+}
+
+div input[type=text] {
+    margin-bottom: 5px;
+}
+
+div input[name=get_csv] {
+    margin-top: 5px;
+}

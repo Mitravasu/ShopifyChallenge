@@ -3,6 +3,8 @@ const router = express.Router();
 
 const itemsController = require('../controllers/items_controller');
 
+
+router.patch('/', itemsController.updateItems)
 // Get all items in the db
 router.get('/', itemsController.getItems);
 // router.get('/:itemId',);
