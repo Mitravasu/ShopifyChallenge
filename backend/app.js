@@ -4,6 +4,8 @@ const itemsRoute = require('./routes/items_routes');
 const groupsRoute = require('./routes/groups_routes');
 const mongoose = require("mongoose");
 const cors = require('cors');
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 
