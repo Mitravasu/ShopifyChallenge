@@ -31,3 +31,4 @@ There are two ways the reviewer can test the backend routes.
     - Then click Import, and the testing collection should be imported into Postman.
     - From here, you can simply test all the api routes.
     - If there is any issue, please refer to this [Documentation](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/)
+    - To test requests that use _ids_ in the body of the request, please first do a get request and then copy an id from the response of the get request and paste into body of the desired request.
