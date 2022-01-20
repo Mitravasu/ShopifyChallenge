@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const itemsRoute = require('./routes/items_routes');
+const groupsRoute = require('./routes/groups_routes');
 const mongoose = require("mongoose");
 const cors = require('cors');
 
@@ -30,5 +31,6 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 app.use('/api/items', itemsRoute)
+app.use('/api/groups', groupsRoute)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

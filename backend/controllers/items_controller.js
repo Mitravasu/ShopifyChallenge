@@ -16,11 +16,14 @@ exports.postUsers = (req, res) => {
     // res.status(200);
     console.log(req.body);
 
-    const item = new Item({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        stock: req.body.stock
-    })
+    const temp = {_id: new mongoose.Types.ObjectId()}
+    const item = new Item(Object.assign(temp,req.body))
+
+    // const item = new Item({
+    //     _id: new mongoose.Types.ObjectId(),
+    //     name: req.body.name,
+    //     stock: req.body.stock
+    // })
 
     Item.findOne({name:req.body.name})
         .exec()
