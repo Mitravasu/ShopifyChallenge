@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "f9abdd45-33ca-4a10-b928-95d1d3d20f27",
+		"name": "ShopifyAPIRoutes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get_All_Inventory_Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/items",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post_New_Inventory_Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Soap\",\r\n    \"stock\": 5,\r\n    \"group\": \"Bathroom\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/items",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_One_Item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"61e8d2a8c19059974dd47cae\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/items",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update_One_Inventory_Item",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"61e8d394c19059974dd47cb3\",\r\n    \"stock\": 50\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/items",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_All_Groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/groups",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add_New_Group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Food\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shopify-inventory-system.herokuapp.com/api/groups",
+					"protocol": "https",
+					"host": [
+						"shopify-inventory-system",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"groups"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
