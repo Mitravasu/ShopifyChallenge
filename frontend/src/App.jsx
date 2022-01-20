@@ -6,9 +6,18 @@ import "./App.css";
 const serverUrl = 'http://localhost:5000/api';
 
 class App extends Component {
-    state = {
-      items: [],
-    };
+    constructor(props) {
+      super(props);
+      this.state = {
+        items: [],
+        edited: []
+      };
+
+      this.updateData = this.updateData.bind(this);
+      this.saveChanges = this.saveChanges.bind(this);
+      this.MakeEdits = this.MakeEdits.bind(this);
+    }
+    
 
     componentDidMount() {
         axios
@@ -22,10 +31,65 @@ class App extends Component {
             });
     }
 
+    updateData(e) {
+      console.log(this.state.items[e.target.className])
+      const temp = this.state.items;
+
+      temp[e.target.className][e.target.id] = e.target.value;
+
+      this.setState({
+        items: temp
+      })
+    }
+
+    saveChanges() {
+      this.state.edited.forEach((i) => {
+        axios
+          .patch(serverUrl + '/items', this.state.items[i])
+          .then((res) => {
+            window.location.reload();
+          })
+
+      })
+    }
+
+    MakeEdits(e) {
+      const _id = e.target.value;
+
+      const fields = document.getElementsByClassName(_id);
+
+      [...fields].forEach((field) => {
+        field.disabled = !field.disabled;
+      })
+
+      if (e.target.innerText === 'Edit') {
+        e.target.innerText = "Finish"
+        if(!this.state.edited.includes(_id)) {
+          this.setState(prevEdit => ({edited: [...prevEdit.edited, _id]}))
+        }
+        console.log(this.state.edited);
+      } else {
+        e.target.innerText = "Edit"
+      }
+    }
+
     render() {
+        function selectAll(e) {
+          let checks = document.getElementsByClassName('item_id');
+
+          if (e.target.checked) {
+            [...checks].forEach((check) => {
+              check.checked = true;
+            })
+          } else {
+            [...checks].forEach((check) => {
+              check.checked = false;
+            })
+          }
+        }
+    
         function deleteSelectedItems() {
           let item_ids = document.getElementsByClassName('item_id');
-          let del_ids = [];
 
           [...item_ids].forEach((item_id) => {
             if (item_id.checked) {
@@ -60,12 +124,13 @@ class App extends Component {
 
         }
 
-        let inventoryTable = this.state.items.map((item) => {
+        let inventoryTable = this.state.items.map((item, index) => {
             return (
               <tr>
-                <td><input className='item_id' type='checkbox' value={item._id}></input></td>
-                <td><input className='item_id' type='text' value={item.name} disabled></input></td>
-                <td><input className='item_id' type='text' value={item.stock} disabled></input></td>
+                <td><input className='item_id' type='checkbox' value={this.state.items[index]._id}></input></td>
+                <td><input id="name" className={index} type='text' value={this.state.items[index].name} onChange={this.updateData} disabled></input></td>
+                <td><input id="stock" className={index} type='number' value={this.state.items[index].stock} onChange={this.updateData} disabled></input></td>
+                <td><button value={index} onClick={this.MakeEdits}>Edit</button></td>
               </tr>
             );
         });
@@ -76,10 +141,11 @@ class App extends Component {
               <input id='item_stock' type='text' placeholder="Stock"></input>
               <button onClick={addNewItem}>Add New Item</button>
               <button onClick={deleteSelectedItems}>Delete Selected Items</button>
+              <button onClick={this.saveChanges}>Save Edits</button>
               <table>
                 <tbody>
                   <tr>
-                    <th>ID</th>
+                    <th><input className='select_all' type='checkbox' onClick={selectAll}></input></th>
                     <th>Name</th>
                     <th>Stock</th>
                   </tr>
